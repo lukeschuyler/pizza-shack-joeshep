@@ -2,17 +2,15 @@
   "name": "express101-postgres",
   "description": "",
   "main": "server.js",
-  "authors": [
-    ""
-  ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/lukeschuyler/pizza-shack-joeshep",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "public/lib"
   ],
   "dependencies": {
     "bootstrap": "^3.3.7"

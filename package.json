@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./app.js",
-    "deploy": "git push heroku master"
+    "deploy": "git push heroku master",
+    "db:reset": "knex migrate:rollback && knex migrate:latest && knex seed:rune"
   },
   "repository": {
     "type": "git",
@@ -19,8 +20,13 @@
   },
   "homepage": "https://github.com/nss-day-cohort-17/pizza-shack-joeshep#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bookshelf": "^0.10.3",
+    "bookshelf-bcrypt": "^2.1.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
+    "knex": "^0.12.9",
+    "pg": "^6.1.5",
     "pug": "^2.0.0-beta11"
   }
 }

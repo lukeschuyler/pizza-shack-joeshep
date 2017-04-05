@@ -2,7 +2,7 @@
 
 const { bookshelf } = require('../db/database')
 
-const Contact = booshelf.Model.extend({
+const Contact = bookshelf.Model.extend({
   tableName: 'contacts' 
 })
 

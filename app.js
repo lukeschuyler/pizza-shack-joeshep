@@ -4,6 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const routes = require('./routes/')
+const bodyParser = require('body-parser')
 
 app.set('view engine', 'pug')
 
@@ -12,6 +13,7 @@ app.locals.body = {}
 app.locals.body.magic = 'Foooooooooo!';
 
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(routes)
 
 

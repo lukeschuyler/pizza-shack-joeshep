@@ -1,6 +1,8 @@
 extends partials/layout.pug
 
 block content
+  if orderMsg
+    h1 #{orderMsg}
   .welcome
     .welcome__text
       h2= body.magic

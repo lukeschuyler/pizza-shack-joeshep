@@ -2,7 +2,7 @@
 
 const { bookshelf } = require('../db/database')
 
-const Topping = booshelf.Model.extend({
+const Topping = bookshelf.Model.extend({
   tableName: 'toppings' 
 })
 

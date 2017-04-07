@@ -1,25 +1,26 @@
-'use strict';
 
-const { User } = require('../models/user')
+const User = require('../models/user')
 
 module.exports.show = (req, res) => {
-  res.render('register', { page: 'Register' });
+  res.render('register', { page: 'Register'});
 }
 
-module.exports.create = ({ body: {email,password,confirmation}}, res) => {
-  if(password === confirmation) {
+module.exports.create = ({body: {email, password, confirmation}}, res) => {
+  if (password === confirmation) {
     User.findOneByEmail(email)
-      .then(user => {
-        if(user) 
-          return res.render('register', { msg: 'Email is already registered' })
-        return User.forge({email, password}).save()
-        .then(() => {
-          res.redirect('/')
-        })
-        .catch(err =>  res.render('register', { msg: 'Dang Bro, problem try agin' }))
+    .then( (user) => {
+      if (user) return res.render('register', { msg: 'Email is already registered'});
+      return User.forge({email, password})
+      .save()
+      .then( () => {
+        res.redirect('/')
       })
-      .catch(err => res.render('register', { msg: 'Dang Bro, problem try agin' }))
+      // catch for save()
+      .catch( (err) => res.render('register', {msg: "Dang. There was probz. Try again."}));
+    })
+    // catch for findOneByEmail
+    .catch( (err) => res.render('register', {msg: "Dang. There was probz. Try again."}));
   } else {
-    res.render('register', { msg: 'Oops, password and confirmation don\'t match' })
+    res.render('register', { msg: 'Oops. Password and confirmation don\'t match. Try again'});
   }
 }

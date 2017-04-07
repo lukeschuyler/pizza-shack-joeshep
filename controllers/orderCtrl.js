@@ -18,6 +18,7 @@ const getSizes = () =>
     throw error
   });
 
+
 module.exports.show = (req, res, err) =>
   Promise.all([getToppings(), getSizes()])
   .then(([toppings, sizes]) => 
@@ -25,14 +26,17 @@ module.exports.show = (req, res, err) =>
   ).catch(err)
 
 
-module.exports.create = ({ body }, res, err) => {
-  // console.log("body", body);
-  Order.forge(body)
+module.exports.create = (req, res, err) => {
+  const toppings = req.body.toppings;
+  req.body.toppings = typeof(toppings) === 'string' ? [toppings] : toppings
+  Order.forge(req.body)
     .save()
     .then( (orderObj) => {
-      res.render('index', {orderMsg: "Thanks for your order!"});
+      // Save a msg in a cookie whose value will be added to req
+      req.flash('orderMsg', 'Thanks for your order!');
+      res.redirect('/');
     })
-    .catch( (err) => {
+    .catch( err => {
       console.log("errors!", err);
       Promise.all([
         Promise.resolve(err),

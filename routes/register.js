@@ -1,12 +1,12 @@
 'use strict';
 
-const { Router } = require('express');
+const { Router } = require('express')
 
-const user = require('../controllers/userCtrl');
+const user = require('../controllers/userCtrl')
 
-const router = Router();
+const router = Router()
 
-router.get('/register', user.show);
-router.post('/register', user.create);
+router.get('/register', user.show)
+router.post('/register', user.create)
 
-module.exports = router;
+module.exports = router
